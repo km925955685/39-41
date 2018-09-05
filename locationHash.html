@@ -1,0 +1,47 @@
+<html>
+    <head>
+
+    </head>
+
+    <body>
+        <button id="a">A</button>
+        <button id="b">B</button>
+        <button id="c">C</button>
+        <div id="cont"></div>
+
+
+        <script>
+        var hashData,ContData ;
+        var cont =document.getElementById("cont")
+        function kuma(){
+            location.hash="kuma"
+        }
+       
+        function Gethash(){
+            hashData=location.hash
+        }//获取到了hash
+        
+        function changeCont(){
+            ContData=hashData.slice(1)//hash带#于是把#去掉
+            cont.innerHTML=ContData
+        }
+
+        window.addEventListener("click",function(){
+            var ev = window.event;
+            var target =ev.target;
+            if(target.nodeName.toLocaleLowerCase() == 'button'){
+                var data=target.textContent
+                location.hash=data
+            }
+        })//点击时改变hash
+
+        window.addEventListener("hashchange", function(){
+            Gethash();
+            changeCont()
+        }, false)
+        Gethash();
+        changeCont()
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,69 @@
+<html>
+    <head>
+
+    </head>
+
+    <body>
+            <button id="a" class="teamA">A</button>
+            <button id="b" class="teamA">B</button>
+            <button id="c" class="teamA">C</button>
+            
+            <button id="d" class="teamB">D</button>
+            <button id="e" class="teamB">E</button>
+            <button id="f" class="teamB">F</button>
+            
+            
+            <div id="contABC"></div>
+            <div id="contDEF"></div>
+
+
+        <script>
+        var hashData,ContData ;
+        
+        var storageBox ="AD"
+        var contABC =document.getElementById("contABC");
+        var contDEF =document.getElementById("contDEF");
+       
+        function Gethash(){
+            hashData=location.hash
+        }//获取到了hash
+        
+        function changeCont(){
+            ContDatABC=hashData.slice(1,2)//hash带#于是把#去掉
+            ContDatDEF=hashData.slice(2)
+            contABC.innerHTML=ContDatABC;
+            contDEF.innerHTML=ContDatDEF
+        }
+
+        window.addEventListener("click",function(){
+            var ev = window.event;
+            var target =ev.target;
+            if(target.nodeName.toLocaleLowerCase() == 'button'){
+                if(target.className == "teamA"){
+                    var data=target.textContent
+                    var DATAA=storageBox.slice(0,1)
+                    storageBox=storageBox.replace(DATAA,data)
+                    location.hash=storageBox
+                }
+                else{
+                    var data=target.textContent
+                    var DATAB=storageBox.slice(1)
+                    storageBox=storageBox.replace(DATAB,data)
+                    location.hash=storageBox
+                }
+                console.log(location.hash)
+                
+            }
+        })//点击时改变hash
+
+        window.addEventListener("hashchange", function(){
+            Gethash();
+            changeCont()
+            console.log("kuma")
+        }, false)
+        Gethash();
+        changeCont()
+
+        </script>
+    </body>
+</html>
